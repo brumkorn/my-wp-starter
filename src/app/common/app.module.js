@@ -7,14 +7,15 @@ export const app = angular
     uiRouter,
   ])
   .component('app', appComponent)
-  .config(($stateProvider) => {
+  .config(($stateProvider, $urlRouterProvider) => {
     'ngInject';
 
     $stateProvider
       .state('app', {
-        redirectTo: 'contacts',
         url: '/app',
         component: 'app',
       });
+
+    $urlRouterProvider.otherwise('/app');
   })
   .name;

@@ -4,12 +4,14 @@
   "description": "My starter for AngularJS WP3 development",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "test",
-    "start": "webpack-dev-server -d --progress --colors --hot --open --content-base bin/",
-    "start-min": "webpack-dev-server -d -p",
+    "test": "karma start",
+    "test-watch": "karma start --auto-watch --no-single-run",
+    "start": "npm run server",
+    "server": "webpack-dev-server -d --progress --colors --hot --open --content-base bin/",
+    "server:min": "webpack-dev-server -d -p --history-api-fallback --inline --progress",
     "build": "webpack -d",
-    "build-dev": "webpack -d",
-    "build-prod": "webpack --config webpack-production-config.js -d -p",
+    "build:dev": "webpack -d",
+    "build:prod": "webpack --config webpack-production-config.js -d -p",
     "watch": "webpack --watch",
     "show-port": "netstat -o -n -a | findstr 0.0:8080",
     "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
@@ -19,8 +21,7 @@
     "url": "git+https://github.com/brumkorn/my-wp-starter.git"
   },
   "keywords": [
-    "Webpack",
-    "3",
+    "Webpack3",
     "AngularJs",
     "starter",
     "starter-kit",
@@ -36,7 +37,8 @@
   "homepage": "https://github.com/brumkorn/my-wp-starter#readme",
   "dependencies": {
     "@uirouter/angularjs": "^1.0.5",
-    "angular": "^1.6.5"
+    "angular": "^1.6.5",
+    "angular-loading-bar": "^0.9.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.6.6",
@@ -55,7 +57,7 @@
     "eslint-plugin-angular": "^3.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "^3.0.0",
+    "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "^1.0.0",
     "html-loader": "^0.5.1",
     "matchdep": "^1.0.1",
@@ -65,6 +67,7 @@
     "ngtemplate-loader": "^2.0.1",
     "node-libs-browser": "^2.0.0",
     "node-sass": "^4.5.3",
+    "postcss": "^6.0.0",
     "postcss-load-config": "^1.2.0",
     "postcss-loader": "^2.0.6",
     "raw-loader": "^0.5.1",
