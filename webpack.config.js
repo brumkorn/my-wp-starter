@@ -1,8 +1,9 @@
 'use strict';
-const cleanPlugin = require('clean-webpack-plugin');
-const copyPlugin = require('copy-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('chunk-manifest-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const path = require('path');
 
@@ -15,15 +16,15 @@ const paths = {
     index: `${root}/index.html`,
     manifest: `${root}/manifest.json`,
     images: `${root}/app/styles/images/*`,
-  }
+  },
 };
 
 // Plugins
 const prep = {
-  clean: new cleanPlugin([
+  clean: new CleanPlugin([
     dist,
   ]),
-  copy: new copyPlugin([{
+  copy: new CopyPlugin([{
     from: paths.static.index,
   }, {
     from: paths.static.manifest,
@@ -38,9 +39,9 @@ const extract = {
   styles: new ExtractTextPlugin({
     filename: 'css/styles.css',
     allChunks: true,
-    ignoreOrder: true
+    ignoreOrder: true,
   }),
-  manifest: new ManifestPlugin()
+  manifest: new ManifestPlugin(),
 };
 
 // Loaders
@@ -53,24 +54,24 @@ const scripts = {
         loader: 'ng-annotate-loader',
         options: {
           ngAnnotate: 'ng-annotate-patched',
-        }
+        },
       },
       {
         loader: 'babel-loader',
         options: {
           presets: [
-            ['es2015', {'loose': true}]
-          ]
+            ['es2015', {'loose': true}],
+          ],
         },
-      }
+      },
     ],
   },
   eslint: {
     test: /\.js$/,
     include: root,
     loader: 'eslint-loader',
-    enforce: 'pre'
-  }
+    enforce: 'pre',
+  },
 };
 
 const styles = {
@@ -83,33 +84,33 @@ const styles = {
       {
         loader: 'css-loader',
         options: {
-          sourceMap: true
-        }
+          sourceMap: true,
+        },
       },
       {
         loader: 'postcss-loader',
         options: {
-          sourceMap: true
-        }
+          sourceMap: true,
+        },
       },
       {
-        loader: 'resolve-url-loader'
+        loader: 'resolve-url-loader',
       },
       {
         loader: 'sass-loader',
         options: {
-          sourceMap: true
-        }
+          sourceMap: true,
+        },
       },
     ],
-  })
+  }),
 };
 
 const markup = {
   test: /\.html$/,
   use: [
     'ngtemplate-loader',
-    'html-loader'
+    'html-loader',
   ],
 };
 
@@ -118,9 +119,9 @@ const fonts = {
   use: {
     loader: 'file-loader',
     options: {
-      name: 'fonts/[name].[ext]'
-    }
-  }
+      name: 'fonts/[name].[ext]',
+    },
+  },
 };
 
 const images = {
@@ -128,14 +129,14 @@ const images = {
   use: {
     loader: 'file-loader',
     options: {
-      name: 'img/[name].[ext]'
-    }
-  }
+      name: 'img/[name].[ext]',
+    },
+  },
 };
 
 const config = {
   entry: {
-    bundle: paths.app
+    bundle: paths.app,
   },
   devtool: 'source-map',
   output: {
@@ -152,19 +153,19 @@ const config = {
       images,
       markup,
       styles,
-    ]
+    ],
   },
   plugins: [
     prep.clean,
     prep.copy,
     extract.styles,
-    extract.manifest
+    extract.manifest,
   ],
   devServer: {
     port: 8080,
     historyApiFallback: true,
 
-  }
+  },
 };
 
 module.exports = config;

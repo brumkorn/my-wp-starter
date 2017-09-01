@@ -1,4 +1,4 @@
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 import {appComponent} from './app.component';
 import './app.scss';
 
