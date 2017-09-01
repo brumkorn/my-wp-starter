@@ -1,0 +1,39 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "google"],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [1, 2, {"SwitchCase": 1, "FunctionExpression": {"parameters": "first"}}],
+    "linebreak-style": [
+      1,
+      "windows"
+    ],
+    "no-unused-vars": [1],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "max-len": [1, {"code": 100}],
+    "complexity": [1, { "max": 15 }],
+    "max-depth": [1, {"max": 5}],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-var": 0,
+    "no-console": 1,
+    "no-debugger": 1,
+    "no-undef": 0
+  },
+  "globals": {
+    "module": false,
+    "require": false,
+    "webpack": false
+  }
+}
