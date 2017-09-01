@@ -1,0 +1,29 @@
+{
+  "name": "my-wp-starter",
+  "version": "1.0.0",
+  "description": "My starter for AngularJS WP3 development",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brumkorn/my-wp-starter.git"
+  },
+  "keywords": [
+    "Webpack",
+    "3",
+    "AngularJs",
+    "starter",
+    "starter-kit",
+    "seed",
+    "WP3",
+    "ng-js"
+  ],
+  "author": "Aleksey Shovgenya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brumkorn/my-wp-starter/issues"
+  },
+  "homepage": "https://github.com/brumkorn/my-wp-starter#readme"
+}
